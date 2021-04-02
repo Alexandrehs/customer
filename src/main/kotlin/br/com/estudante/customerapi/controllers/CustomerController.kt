@@ -1,24 +1,35 @@
 package br.com.estudante.customerapi.controllers
 
+import br.com.estudante.customerapi.models.CEPModel
 import br.com.estudante.customerapi.models.Customer
 import br.com.estudante.customerapi.repository.CustomerRepository
+import br.com.estudante.customerapi.service.CepService
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.http.ResponseEntity
-import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.*
 import javax.validation.Valid
 
 @RestController
-@Validated
 @RequestMapping("/customer")
 class CustomerController {
 
   @Autowired
   lateinit var customerRepository : CustomerRepository
+  @Autowired
+  lateinit var cepService :  CepService
 
-  @PostMapping("/add")
-  fun add(@RequestBody @Valid customer: Customer) : Customer {
-    var newCustomer = customerRepository.save(customer)
-    return customer
+  @PostMapping
+  fun create(@RequestBody @Valid customer: Customer) : Long {
+    var cepValid = cepService.getCep(customer.cep)
+
+    if(cepValid != null) {
+      return customerRepository.save(customer).id
+    } else {
+      return 0
+    }
+  }
+
+  @GetMapping
+  fun getAll() : List<Customer> {
+    return customerRepository.findAll()
   }
 }

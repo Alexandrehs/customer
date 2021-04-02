@@ -13,18 +13,18 @@ data class Customer (
   @GeneratedValue
   val id: Long = 0,
 
-  @NotBlank(message = "Nome obrigatório")
+  @field:NotBlank(message = "Nome obrigatório")
   val name: String,
 
-  @NotBlank(message = "CPF obrigatório")
-  @Min(11)
-  @Max(11)
+  @field:NotBlank(message = "CPF obrigatório")
+  @field:Min(11)
+  @field:Max(11)
   val cpf: String,
 
-  @NotBlank(message = "CEP obrigatório")
+  @field:NotBlank(message = "CEP obrigatório")
   val cep: String,
 
-  @NotBlank(message = "E-mail obrigatório")
-  @Email
+  @field:NotBlank(message = "E-mail obrigatório")
+  @field:Email
   val email: String
 )

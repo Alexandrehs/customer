@@ -18,6 +18,7 @@ class CustomerController {
 
   @PostMapping("/add")
   fun add(@RequestBody @Valid customer: Customer) : Customer {
-    return customerRepository.save(customer)
+    var newCustomer = customerRepository.save(customer)
+    return customer
   }
 }

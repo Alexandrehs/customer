@@ -1,8 +1,8 @@
 package br.com.estudante.customerapi.repository
 
-import br.com.estudante.customerapi.models.Customer
+import br.com.estudante.customerapi.entity.CustomerRequest
 import org.springframework.data.jpa.repository.JpaRepository
 
 
-interface CustomerRepository : JpaRepository<Customer, Long> {
+interface CustomerRepository : JpaRepository<CustomerRequest, Long> {
 }

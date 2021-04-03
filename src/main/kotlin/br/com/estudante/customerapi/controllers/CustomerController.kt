@@ -1,8 +1,9 @@
 package br.com.estudante.customerapi.controllers
 
-import br.com.estudante.customerapi.entity.CustomerRequest
-import br.com.estudante.customerapi.repository.CustomerRepository
-import org.springframework.beans.factory.annotation.Autowired
+import br.com.estudante.customerapi.rest.CustomerRequest
+import br.com.estudante.customerapi.rest.CustomerResponse
+import org.springframework.http.HttpStatus
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import javax.validation.Valid
 
@@ -10,11 +11,9 @@ import javax.validation.Valid
 @RequestMapping("/customer")
 class CustomerController {
 
-  @Autowired
-  lateinit var customerRepository: CustomerRepository
-
  @PostMapping
- fun create(@RequestBody @Valid customerRequest: CustomerRequest) : Long? {
-   return customerRequest.id
+ fun create(@RequestBody @Valid customerRequest: CustomerRequest) : ResponseEntity<CustomerResponse> {
+   val newCustomerId = CustomerResponse(id = customerRequest.id.toString())
+   return ResponseEntity.status(HttpStatus.CREATED).body(newCustomerId)
  }
 }

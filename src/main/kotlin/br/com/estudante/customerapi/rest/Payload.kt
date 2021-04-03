@@ -8,8 +8,6 @@ import javax.validation.constraints.Pattern
 import javax.validation.constraints.Size
 
 data class CustomerRequest (
-  @Id
-  val id : Long?,
 
   @field:NotBlank
   @field:Size(min = 1, max = 50)
@@ -30,6 +28,5 @@ data class CustomerRequest (
 )
 
 data class CustomerResponse (
-  @Id
   val id: String?
     )

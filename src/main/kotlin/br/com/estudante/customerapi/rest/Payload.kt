@@ -14,16 +14,16 @@ data class CustomerRequest (
   val name : String?,
 
   @field:NotBlank
-  @field:Pattern(regexp = "^[0-9]{11}", message = "Obrigátorio, e deve conter apenas numeros e deve ser válido.")
+  @field:Pattern(regexp = "^[0-9]{11}", message = "Obrigátorio, e deve conter 11 digitos numéricos e deve ser válido.")
   @field:CPF
   val personCode : String?,
 
   @field:NotBlank
-  @field:Pattern(regexp = "^[0-9]{8}", message = "Obrigátorio, e deve conter apenas numeros e deve ser valido")
+  @field:Pattern(regexp = "^[0-9]{8}", message = "Obrigátorio, e deve conter 8 digitos numéricos e deve ser válido")
   val postalCode : String?,
 
   @field:NotBlank
-  @field:Email
+  @field:Email(message = "Por favor, digite um e-mail válido por exemplo joao@joao.com")
   val email : String?
 )
 

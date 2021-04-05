@@ -1,25 +1,19 @@
 package br.com.estudante.customerapi.controllers
 
-import br.com.estudante.customerapi.models.Customer
-import br.com.estudante.customerapi.repository.CustomerRepository
-import org.springframework.beans.factory.annotation.Autowired
+import br.com.estudante.customerapi.rest.CustomerRequest
+import br.com.estudante.customerapi.rest.CustomerResponse
+import org.springframework.http.HttpStatus
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
+import javax.validation.Valid
 
 @RestController
 @RequestMapping("/customer")
 class CustomerController {
 
-  @Autowired
-  lateinit var customerRepository : CustomerRepository
-
-  @PostMapping("/add")
-  fun add(@RequestBody customer: Customer) : Customer {
-    customerRepository.save(customer)
-    return customer
-  }
-
-  @GetMapping("/all")
-  fun all() : List<Customer> {
-    return customerRepository.findAll()
-  }
+ @PostMapping
+ fun create(@RequestBody @Valid customerRequest: CustomerRequest) : ResponseEntity<CustomerResponse> {
+   val newCustomerId = CustomerResponse(id = customerRequest.id.toString())
+   return ResponseEntity.status(HttpStatus.CREATED).body(newCustomerId)
+ }
 }

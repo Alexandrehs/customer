@@ -3,6 +3,8 @@ package br.com.estudante.customerapi.controllers
 import br.com.estudante.customerapi.exceptions.CustomerException
 import br.com.estudante.customerapi.rest.CustomerRequest
 import br.com.estudante.customerapi.rest.CustomerResponse
+import com.fasterxml.jackson.annotation.JsonFormat
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.validation.FieldError
@@ -25,15 +27,10 @@ class CustomerController {
  }
 
  @ExceptionHandler(MethodArgumentNotValidException::class)
- fun handleCustomerNotFoundException(ex : MethodArgumentNotValidException, request : WebRequest) : ResponseEntity<CustomerException> {
+ fun handleCustomerNotValidException(ex : MethodArgumentNotValidException, request : WebRequest) : ResponseEntity<List<CustomerException>> {
    val fieldError : List<FieldError> = ex.getFieldErrors()
+   var errorList = fieldError.map { it -> CustomerException(it.field, it.defaultMessage.toString()) }
 
-   for(fe in fieldError) {
-     val field: String = fe.field
-     val message: String = fe.defaultMessage.toString()
-     customerException = CustomerException(field, message)
-   }
-
-   return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(customerException)
+   return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorList)
  }
 }

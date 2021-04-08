@@ -1,7 +1,6 @@
 package br.com.estudante.customerapi.rest
 
 import org.hibernate.validator.constraints.br.CPF
-import javax.persistence.Id
 import javax.validation.constraints.Email
 import javax.validation.constraints.NotBlank
 import javax.validation.constraints.Pattern
@@ -9,20 +8,20 @@ import javax.validation.constraints.Size
 
 data class CustomerRequest (
 
-  @field:NotBlank(message = "Desculpe, o nome não pode ficar em branco.", )
-  @field:Size(min = 10, max = 50, message = "Desculpe, o nome deve conter no minimo 10 letras.")
+  @field:NotBlank(message = "Nome não pode ficar em branco.", )
+  @field:Size(min = 10, max = 50, message = "O nome deve conter entre {min} e {max} letras.")
   val name : String?,
 
-  @field:NotBlank(message = "Desculpe, este campo é obrigátorio e deve conter um CPF válido.")
-  @field:CPF(message = "Desculpe, você digitou um CPF inválido, confira se os números estão corretos.")
+  @field:NotBlank(message = "CPF é obrigátorio.")
+  @field:CPF(message = "CPF inválido, confira se os números estão corretos.")
   val personCode : String?,
 
-  @field:NotBlank(message = "Desculpe, este campo é obrigátorio e não pode ficar em branco.")
-  @field:Pattern(regexp = "^[0-9]{8}", message = "Desculpe, por favor insira um CEP válido.")
+  @field:NotBlank(message = "Digite um CEP.")
+  @field:Pattern(regexp = "^[0-9]{8}", message = "O CEP não é válido.")
   val postalCode : String?,
 
-  @field:NotBlank(message = "Precisamo que você informe um e-mail para podermos validar sua conta.")
-  @field:Email(message = "Por favor, digite um e-mail válido por exemplo joao@joao.com")
+  @field:NotBlank(message = "Precisamos de um e-mail válido.")
+  @field:Email(message = "Digite um e-mail válido por exemplo joao@joao.com")
   val email : String?
 )
 

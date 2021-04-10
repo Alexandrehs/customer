@@ -3,6 +3,8 @@ package br.com.estudante.customerapi.controllers
 import br.com.estudante.customerapi.exceptions.CustomerException
 import br.com.estudante.customerapi.rest.CustomerRequest
 import br.com.estudante.customerapi.rest.CustomerResponse
+import br.com.estudante.customerapi.services.CustomerService
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.validation.FieldError
@@ -13,17 +15,19 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.context.request.WebRequest
-import java.util.*
 import javax.validation.Valid
 
 @RestController
 @RequestMapping("/customer")
 class CustomerController {
 
+  @Autowired
+  lateinit var service : CustomerService
+
  @PostMapping
  fun create(@RequestBody @Valid customerRequest: CustomerRequest) : ResponseEntity<CustomerResponse> {
-   val newCustomerId = CustomerResponse(id = UUID.randomUUID().toString())
-   return ResponseEntity.status(HttpStatus.CREATED).body(newCustomerId)
+   println(customerRequest)
+   return service.addCustomer(customerRequest)
  }
 
  @ExceptionHandler(MethodArgumentNotValidException::class)
@@ -34,3 +38,4 @@ class CustomerController {
    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorList)
  }
 }
+

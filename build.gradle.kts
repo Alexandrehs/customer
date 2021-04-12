@@ -5,6 +5,7 @@ plugins {
 	id("io.spring.dependency-management") version "1.0.11.RELEASE"
 	kotlin("jvm") version "1.4.31"
 	kotlin("plugin.spring") version "1.4.31"
+	kotlin("plugin.jpa") version "1.4.31"
 }
 
 group = "br.com.estudante"
@@ -24,6 +25,8 @@ dependencies {
 	implementation ("org.springframework.boot:spring-boot-starter-data-jpa")
 	runtimeOnly ("com.h2database:h2")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	runtimeOnly("mysql:mysql-connector-java")
+
 }
 
 tasks.withType<KotlinCompile> {

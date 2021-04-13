@@ -1,22 +1,13 @@
 package br.com.estudante.customerapi.rest
 
 import org.hibernate.validator.constraints.br.CPF
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.Id
-import javax.persistence.Table
 import javax.validation.constraints.Email
 import javax.validation.constraints.NotBlank
 import javax.validation.constraints.Pattern
 import javax.validation.constraints.Size
 
-@Entity
-@Table(name = "customers")
-data class CustomerRequest (
 
-  @Id
-  @GeneratedValue
-  val id: Long,
+data class CustomerRequest (
 
   @field:NotBlank(message = "Nome não pode ficar em branco.", )
   @field:Size(min = 10, max = 50, message = "O nome deve conter entre {min} e {max} letras.")
@@ -36,5 +27,6 @@ data class CustomerRequest (
 )
 
 data class CustomerResponse (
-  val id: Long
-    )
+
+  val id: String
+)

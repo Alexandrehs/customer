@@ -1,11 +1,11 @@
 package br.com.estudante.customerapi.rest
 
 import br.com.estudante.customerapi.entity.CustomerEntity
+import br.com.estudante.customerapi.validation.PostalCode
 import org.hibernate.validator.constraints.br.CPF
 import java.util.*
 import javax.validation.constraints.Email
 import javax.validation.constraints.NotBlank
-import javax.validation.constraints.Pattern
 import javax.validation.constraints.Size
 
 
@@ -19,9 +19,9 @@ data class CustomerRequest (
   @field:CPF(message = "CPF inválido, confira se os números estão corretos.")
   val personCode : String?,
 
-  @field:NotBlank(message = "Digite um CEP.")
-  @field:Pattern(regexp = "^[0-9]{8}", message = "O CEP não é válido.")
-  val postalCode : String?,
+  @field:NotBlank
+  @PostalCode
+  val postalCode: String?,
 
   @field:NotBlank(message = "Precisamos de um e-mail válido.")
   @field:Email(message = "Digite um e-mail válido por exemplo joao@joao.com")

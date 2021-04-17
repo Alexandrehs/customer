@@ -1,9 +1,7 @@
-package br.com.estudante.customerapi.controllers
+package br.com.estudante.customerapi.rest
 
 import br.com.estudante.customerapi.entity.CustomerEntity
 import br.com.estudante.customerapi.repository.CustomerRepository
-import br.com.estudante.customerapi.rest.CustomerRequest
-import br.com.estudante.customerapi.rest.CustomerResponse
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -15,7 +13,7 @@ import javax.validation.Valid
 
 @RestController
 @RequestMapping("/customer")
-class CustomerController {
+class CustomerResource {
 
     @Autowired
     lateinit var repository: CustomerRepository

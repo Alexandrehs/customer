@@ -6,12 +6,11 @@ import kotlin.reflect.KClass
 
 @Target(AnnotationTarget.FIELD)
 @Retention(AnnotationRetention.RUNTIME)
-@Constraint(validatedBy = [PostalCodeValidator::class])
+@Constraint(validatedBy = [NotEmptyWithoutNullValidator::class])
 @MustBeDocumented
 
-annotation class PostalCode(
-    val message: String = "Informe um CEP válido",
-    val onlyNumbers: Boolean = false,
+annotation class NotEmptyWithoutNull(
+    val message: String = "cannbot be empty",
     val groups: Array<KClass<Any>> = [],
     val payload: Array<KClass<out Payload>> = []
 )

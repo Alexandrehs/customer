@@ -1,46 +1,38 @@
 package br.com.estudante.customerapi.rest
 
 import br.com.estudante.customerapi.entity.CustomerEntity
+import br.com.estudante.customerapi.validation.NotEmptyWithoutNull
 import br.com.estudante.customerapi.validation.PostalCode
 import org.hibernate.validator.constraints.br.CPF
-import java.util.*
 import javax.validation.constraints.Email
 import javax.validation.constraints.NotBlank
+import javax.validation.constraints.NotNull
 import javax.validation.constraints.Size
 
+data class CustomerRequest(
 
-data class CustomerRequest (
+    @field:NotBlank(message = "Informe o nome")
+    @field:Size(min = 3, max = 50, message = "O nome deve conter entre {min} e {max} caracteres.")
+    val name: String?,
 
-  @field:NotBlank(message = "Nome não pode ficar em branco.", )
-  @field:Size(min = 10, max = 50, message = "O nome deve conter entre {min} e {max} letras.")
-  val name : String?,
+    @field:NotNull(message = "Informe um CPF")
+    @field:CPF(message = "Deve ser um CPF válido")
+    val personCode: String?,
 
-  @field:NotBlank(message = "CPF é obrigátorio.")
-  @field:CPF(message = "CPF inválido, confira se os números estão corretos.")
-  val personCode : String?,
+    @field:NotNull(message = "O CEP é obrigatório")
+    @PostalCode(onlyNumbers = false)
+    val postalCode: String?,
 
-  @field:NotBlank
-  @PostalCode
-  val postalCode: String?,
-
-  @field:NotBlank(message = "Precisamos de um e-mail válido.")
-  @field:Email(message = "Digite um e-mail válido por exemplo joao@joao.com")
-  val email : String?
-){
-
-  fun customerToEntity(customerRequest: CustomerRequest): CustomerEntity {
-
-    return CustomerEntity(
-      UUID.randomUUID().toString(),
-      customerRequest.name,
-      customerRequest.personCode,
-      customerRequest.postalCode,
-      customerRequest.email
-    )
-  }
-}
-
-data class CustomerResponse (
-
-  val id: String
+    @field:NotNull(message = "Informe um endereço de email")
+    @field:NotEmptyWithoutNull(message = "O email não pode estar vazio")
+    @field:Email(message = "Deve ser um email válido")
+    val email: String?
 )
+
+data class CustomerResponse(
+    val id: String
+) {
+    constructor(customerEntity: CustomerEntity) : this(
+        id = customerEntity.id
+    )
+}

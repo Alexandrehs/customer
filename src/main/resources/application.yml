@@ -6,5 +6,11 @@ spring:
   jpa:
     database: POSTGRESQL
     generate-ddl: true
-    hibernate.ddl-auto: update
-    show-sql: true
+    #hibernate.ddl-auto: update
+    #show-sql: true
+
+flyway:
+  url: jdbc:postgresql://localhost:5432/
+  schemas: customer-api
+  user: postgres
+  password: 123

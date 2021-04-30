@@ -1,16 +1,24 @@
 spring:
   datasource:
-    username: postgres
-    password: 123
-    url: jdbc:postgresql://localhost:5432/customer-api
+    #username: postgres
+    username: msrrqflkxoljhz
+    password: ccff4f1eb18e76dbed7d16b7d659c1affed30a7bc68d5fd8d9948ff66d80237b
+    #password: 123
+    #url: jdbc:postgresql://localhost:5432/customer-api
+    url: postgres://msrrqflkxoljhz:ccff4f1eb18e76dbed7d16b7d659c1affed30a7bc68d5fd8d9948ff66d80237b@ec2-3-217-219-146.compute-1.amazonaws.com:5432/d6cu0ak8hrfg6v
   jpa:
     database: POSTGRESQL
     generate-ddl: true
-    #hibernate.ddl-auto: update
+    hibernate:
+      ddl-auto: update
     #show-sql: true
 
 flyway:
-  url: jdbc:postgresql://localhost:5432/
-  schemas: customer-api
-  user: postgres
-  password: 123
+  #url: jdbc:postgresql://localhost:5432/
+  url: postgres://msrrqflkxoljhz:ccff4f1eb18e76dbed7d16b7d659c1affed30a7bc68d5fd8d9948ff66d80237b@ec2-3-217-219-146.compute-1.amazonaws.com:5432/d6cu0ak8hrfg6v
+  #schemas: customer-api
+  schemas: d6cu0ak8hrfg6v
+  #user: postgres
+  user: msrrqflkxoljhz
+  #password: 123
+  password: ccff4f1eb18e76dbed7d16b7d659c1affed30a7bc68d5fd8d9948ff66d80237b

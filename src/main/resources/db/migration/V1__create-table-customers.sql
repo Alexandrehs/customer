@@ -1,0 +1,7 @@
+CREATE TABLE customers (
+    id VARCHAR(32) NOT NULL PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    personCode VARCHAR(11) NOT NULL UNIQUE,
+    postalCode VARCHAR(8) NOT NULL,
+    email VARCHAR(244) NOT NULL
+)

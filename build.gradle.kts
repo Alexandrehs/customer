@@ -26,6 +26,7 @@ dependencies {
 	implementation ("org.springframework.boot:spring-boot-starter-data-jpa")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	implementation("org.postgresql:postgresql")
+	implementation("org.flywaydb:flyway-core")
 
 }
 
@@ -38,5 +39,11 @@ tasks.withType<KotlinCompile> {
 
 tasks.withType<Test> {
 	useJUnitPlatform()
+}
+
+flyway {
+	url = "jdbc:postgresql://localhost:5432/customer-api"
+	user = "postgres"
+	password = "admin"
 }
 

@@ -1,10 +1,5 @@
 spring:
-  datasource:
-    username: postgres
-    #username: msrrqflkxoljhz
-    #password: ccff4f1eb18e76dbed7d16b7d659c1affed30a7bc68d5fd8d9948ff66d80237b
-    password: admin
-    url: jdbc:postgresql://localhost:5432/customer-api
-    #url: postgres://msrrqflkxoljhz:ccff4f1eb18e76dbed7d16b7d659c1affed30a7bc68d5fd8d9948ff66d80237b@ec2-3-217-219-146.compute-1.amazonaws.com:5432/d6cu0ak8hrfg6v
   jpa:
     database: POSTGRESQL
+app:
+  flyway-maximum-pool-size: 10

@@ -4,6 +4,7 @@ import br.com.estudante.customerapi.rest.CustomerRequest
 import org.hibernate.annotations.CreationTimestamp
 import java.sql.Timestamp
 import java.util.UUID
+import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.Id
 import javax.persistence.Table
@@ -17,8 +18,10 @@ data class CustomerEntity(
 
     val name: String,
 
+    @Column(name = "person_code")
     val personCode: String,
 
+    @Column(name = "postal_code")
     val postalCode: String,
 
     val email: String

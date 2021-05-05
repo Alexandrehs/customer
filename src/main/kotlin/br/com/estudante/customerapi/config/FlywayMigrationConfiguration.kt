@@ -1,4 +1,4 @@
-package br.com.estudante.customerapi.confi
+package br.com.estudante.customerapi.config
 
 import com.zaxxer.hikari.HikariDataSource
 import org.flywaydb.core.Flyway

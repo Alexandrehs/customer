@@ -1,5 +1,5 @@
 CREATE TABLE customers (
-    id VARCHAR(32) NOT NULL PRIMARY KEY,
+    id VARCHAR(36) NOT NULL PRIMARY KEY,
     name VARCHAR(50) NOT NULL,
     person_code VARCHAR(11) NOT NULL UNIQUE,
     postal_code VARCHAR(8) NOT NULL,

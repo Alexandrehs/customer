@@ -3,7 +3,7 @@ spring:
     database: POSTGRESQL
 #adicionando a porta do servidor
 server:
-  port: ${PORT:8080}
+  port: $PORT
 
 app:
   flyway-maximum-pool-size: 10

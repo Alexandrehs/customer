@@ -1,3 +1,3 @@
 web: ./gradlew bootRun --args='--spring.profiles.active=prod'
 
-gradle flywayMigrate -i
+web: gradle flywayMigrate -i

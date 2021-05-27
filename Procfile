@@ -1,1 +1,1 @@
-web: ./gradlew bootRun --args='--spring.profiles.active=prod --server.port=$PORT'
+web: ./gradlew bootRun --args='--spring.profiles.active=prod'

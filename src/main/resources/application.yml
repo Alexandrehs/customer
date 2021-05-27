@@ -4,6 +4,3 @@ spring:
 app:
   flyway-maximum-pool-size: 10
 
-server:
-  port: $PORT
-

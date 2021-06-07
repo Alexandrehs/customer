@@ -1,1 +1,1 @@
-web: ./gradlew bootRun --args='--spring.profiles.active=prod --spring.server.port:$PORT'
+web: java -jar customer-api-0.0.1-SNAPSHOT.jar

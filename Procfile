@@ -1,1 +1,1 @@
-web: java -jar build/libs/customer-api-0.0.1-SNAPSHOT.jar
+web: java -jar build/libs/customer-api-0.0.1-SNAPSHOT.jar --args='spring.profiles.active=prd' --port $PORT

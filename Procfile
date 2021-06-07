@@ -1,1 +1,1 @@
-web: java -jar customer-api-0.0.1-SNAPSHOT.jar
+web: java -jar build/libs/customer-api-0.0.1-SNAPSHOT.jar

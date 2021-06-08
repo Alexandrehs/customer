@@ -3,4 +3,4 @@ spring:
     url: ${JDBC_DATABASE_URL}
     username: ${JDBC_DATABASE_USERNAME}
     password: ${JDBC_DATABASE_PASSWORD}
-    driver-class-name: ${JDBC_DATABASE_URL}
+    driver-class-name: org.postgresql.Driver

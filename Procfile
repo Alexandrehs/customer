@@ -1,1 +1,1 @@
-web: java -jar build/libs/customer-api-0.0.1-SNAPSHOT.jar -Dspring.profiles.active=local
+web: java -jar build/libs/customer-api-0.0.1-SNAPSHOT.jar -Dspring.profiles.active=prod

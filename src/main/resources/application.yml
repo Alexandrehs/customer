@@ -1,5 +1,11 @@
 spring:
   jpa:
     database: POSTGRESQL
+
+  server:
+    port: ${PORT:8080}
 app:
   flyway-maximum-pool-size: 10
+
+server:
+  port: ${PORT:8080}

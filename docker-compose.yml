@@ -5,8 +5,12 @@ services:
     image: postgres
     restart: always
     environment:
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: postgres
+<<<<<<< HEAD
+      POSTGRES_USER: postgres
+=======
+      POSTGRES_USER: postegres
+>>>>>>> heroku_prod
+      POSTGRES_PASSWORD: root
     ports:
       - 5432:5432
   adminer:

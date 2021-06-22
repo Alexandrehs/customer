@@ -19,14 +19,30 @@ data class CustomerRequest(
     @field:CPF(message = "Deve ser um CPF válido")
     val personCode: String?,
 
+    @field:NotNull(message = "Informe um endereço de email")
+    @field:NotEmptyWithoutNull(message = "O email não pode estar vazio")
+    @field:Email(message = "Deve ser um email válido")
+    val email: String?,
+
     @field:NotNull(message = "O CEP é obrigatório")
     @PostalCode(onlyNumbers = false)
     val postalCode: String?,
 
-    @field:NotNull(message = "Informe um endereço de email")
-    @field:NotEmptyWithoutNull(message = "O email não pode estar vazio")
-    @field:Email(message = "Deve ser um email válido")
-    val email: String?
+
+    var road: String?,
+
+    @field:NotNull(message = "É preciso ter um numero")
+    @field:Size(min = 1, max = 5)
+    var number: String?,
+
+    var district: String?,
+
+    var city: String?,
+
+    var state: String?,
+
+    var complement: String?
+
 )
 
 data class CustomerResponse(
@@ -36,3 +52,13 @@ data class CustomerResponse(
         id = customerEntity.id
     )
 }
+
+data class AddressResponse (
+    val logradouro: String?,
+    
+    val bairro: String?,
+
+    val localidade: String?,
+
+    val uf: String?,
+)

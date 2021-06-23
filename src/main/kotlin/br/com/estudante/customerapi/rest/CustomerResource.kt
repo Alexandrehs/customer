@@ -20,12 +20,12 @@ class CustomerResource {
 
     @PostMapping
     fun create(@RequestBody @Valid customerRequest: CustomerRequest) : ResponseEntity<CustomerResponse?> {
-        val addressCustomer =  addressService.getAddress(customerRequest.postalCode)
+        val addressCustomer =  addressService.getAddress(customerRequest.postalCode!!)
         if(addressCustomer != null) {
-            customerRequest.road = addressCustomer!!.logradouro
-            customerRequest.district = addressCustomer!!.bairro
-            customerRequest.city = addressCustomer!!.localidade
-            customerRequest.state = addressCustomer!!.uf
+            customerRequest.road = addressCustomer!!.address
+            customerRequest.district = addressCustomer!!.district
+            customerRequest.city = addressCustomer!!.city
+            customerRequest.state = addressCustomer!!.state
             print(customerRequest)
             return ResponseEntity.status(HttpStatus.OK).body(CustomerResponse(repository.save(CustomerEntity(customerRequest)).id))
         }

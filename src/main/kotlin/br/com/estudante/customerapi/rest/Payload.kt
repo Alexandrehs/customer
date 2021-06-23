@@ -54,11 +54,11 @@ data class CustomerResponse(
 }
 
 data class AddressResponse (
-    val logradouro: String?,
+    val address: String?,
     
-    val bairro: String?,
+    val district: String?,
 
-    val localidade: String?,
+    val city: String?,
 
-    val uf: String?,
+    val state: String?,
 )

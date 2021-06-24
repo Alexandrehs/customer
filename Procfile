@@ -1,1 +1,1 @@
-web: ./gradlew bootRun --args='--spring.profiles.active=prod'
+web: java -jar build/libs/customer-api-0.0.1-SNAPSHOT.jar -Dspring.profiles.active=prod

@@ -23,6 +23,7 @@ class CustomerResource {
     fun create(@RequestBody @Valid customerRequest: CustomerRequest): ResponseEntity<CustomerResponse> {
         val customerEntity = repository.save(CustomerEntity(customerRequest))
         val customerResponse = CustomerResponse(customerEntity)
+        print(customerRequest)
         return ResponseEntity.status(HttpStatus.CREATED).body(customerResponse)
     }
 }

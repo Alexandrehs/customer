@@ -26,7 +26,6 @@ class CustomerResource {
             customerRequest.district = addressCustomer!!.district
             customerRequest.city = addressCustomer!!.city
             customerRequest.state = addressCustomer!!.state
-            print(customerRequest)
             return ResponseEntity.status(HttpStatus.OK).body(CustomerResponse(repository.save(CustomerEntity(customerRequest)).id))
         }
 

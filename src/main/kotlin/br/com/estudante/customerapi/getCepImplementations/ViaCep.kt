@@ -2,13 +2,12 @@ package br.com.estudante.customerapi.getCepImplementations
 
 import br.com.estudante.customerapi.providers.PostalCodeProvider
 import br.com.estudante.customerapi.rest.AddressResponse
-import br.com.estudante.customerapi.sevices.ServiceForGetCepApiExternal
+import br.com.estudante.customerapi.services.ServiceForGetCepApiExternal
 
 class ViaCep : PostalCodeProvider {
 
-
-    override fun findPostalCode(postalCode: String): AddressResponse? {
-        val serviceForGetCepApiExternal: ServiceForGetCepApiExternal = ServiceForGetCepApiExternal()
+    override fun findPostalCode(postalCode: String): AddressResponse {
+        val serviceForGetCepApiExternal = ServiceForGetCepApiExternal()
 
         val viacepResponse = serviceForGetCepApiExternal.getRestTemplate().getForObject(
             "https://viacep.com.br/ws/{cep}/json",
@@ -17,7 +16,7 @@ class ViaCep : PostalCodeProvider {
         )
 
         return AddressResponse(
-            address = viacepResponse!!.logradouro,
+            road = viacepResponse!!.logradouro,
             district = viacepResponse!!.bairro,
             city = viacepResponse!!.localidade,
             state = viacepResponse!!.uf

@@ -4,10 +4,8 @@ import br.com.estudante.customerapi.rest.CustomerRequest
 import org.hibernate.annotations.CreationTimestamp
 import java.sql.Timestamp
 import java.util.UUID
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.Id
-import javax.persistence.Table
+import javax.persistence.*
+import javax.validation.constraints.Null
 
 @Entity
 @Table(name = "customers")
@@ -28,37 +26,26 @@ data class CustomerEntity(
     @Column(name = "postal_code")
     val postalCode: String,
 
-    @Column(name = "road")
-    val road: String,
-
-    @Column(name = "number")
-    val number: String,
-
-    @Column(name = "district")
-    val district: String,
-
-    @Column(name = "city")
-    val city: String,
-
-    @Column(name = "state")
-    val state: String,
+    @Column(name = "numberofroad")
+    val numberOfRoad: String,
 
     @Column(name = "complement")
-    val complement: String
+    val complement: String?,
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "address_id", nullable = false)
+    val addressEntity: AddressEntity
 
 ) {
-    constructor(customerRequest: CustomerRequest) : this(
+    constructor(customerRequest: CustomerRequest, addressEntity: AddressEntity) : this(
         id = UUID.randomUUID().toString(),
         name = customerRequest.name!!,
         personCode = customerRequest.personCode!!,
         email = customerRequest.email!!,
         postalCode = customerRequest.postalCode!!,
-        road = customerRequest.road!!,
-        number = customerRequest.number!!,
-        district = customerRequest.district!!,
-        city = customerRequest.city!!,
-        state = customerRequest.state!!,
-        complement = customerRequest.complement!!
+        numberOfRoad = customerRequest.numberOfRoad!!,
+        complement = customerRequest.complement,
+        addressEntity = addressEntity
     )
 
     @field:CreationTimestamp

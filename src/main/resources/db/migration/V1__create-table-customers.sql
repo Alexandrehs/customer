@@ -5,4 +5,4 @@ CREATE TABLE customers (
     postal_code VARCHAR(8) NOT NULL,
     email VARCHAR(244) NOT NULL,
     created TIMESTAMP NOT NULL
-)
+);

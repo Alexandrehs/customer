@@ -28,20 +28,11 @@ data class CustomerRequest(
     @PostalCode(onlyNumbers = false)
     val postalCode: String?,
 
-
-    var road: String?,
-
     @field:NotNull(message = "É preciso ter um numero")
     @field:Size(min = 1, max = 5)
-    var number: String?,
+    val numberOfRoad: String?,
 
-    var district: String?,
-
-    var city: String?,
-
-    var state: String?,
-
-    var complement: String?
+    val complement: String?
 
 )
 
@@ -53,8 +44,19 @@ data class CustomerResponse(
     )
 }
 
+data class AddressRequest (
+    val road: String?,
+
+    val district: String?,
+
+    val city: String?,
+
+    val state: String?,
+
+)
+
 data class AddressResponse (
-    val address: String?,
+    val road: String?,
     
     val district: String?,
 

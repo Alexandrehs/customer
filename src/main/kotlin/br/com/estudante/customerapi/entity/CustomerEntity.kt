@@ -26,7 +26,7 @@ data class CustomerEntity(
     @Column(name = "postal_code")
     val postalCode: String,
 
-    @Column(name = "numberofroad")
+    @Column(name = "number_of_road")
     val numberOfRoad: String,
 
     @Column(name = "complement")

@@ -1,8 +1,14 @@
+server:
+  port: ${PORT:8080}
+
 spring:
   jpa:
     database: POSTGRESQL
 app:
   flyway-maximum-pool-size: 10
-
-server:
-  port: ${PORT:8080}
+  client:
+    connect-time-out: 10000
+    read-time-out: 10000
+    services:
+      via-cep: https://viacep.com.br/ws/{cep}/json
+      api-cep: https://ws.apicep.com/cep/{cep}.json

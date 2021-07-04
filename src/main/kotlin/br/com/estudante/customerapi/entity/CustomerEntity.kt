@@ -1,11 +1,16 @@
 package br.com.estudante.customerapi.entity
 
 import br.com.estudante.customerapi.rest.CustomerRequest
-import org.hibernate.annotations.CreationTimestamp
 import java.sql.Timestamp
 import java.util.UUID
-import javax.persistence.*
-import javax.validation.constraints.Null
+import javax.persistence.Column
+import javax.persistence.Entity
+import javax.persistence.FetchType
+import javax.persistence.Id
+import javax.persistence.JoinColumn
+import javax.persistence.ManyToOne
+import javax.persistence.Table
+import org.hibernate.annotations.CreationTimestamp
 
 @Entity
 @Table(name = "customers")

@@ -1,20 +1,23 @@
 package br.com.estudante.customerapi.entity
 
-import br.com.estudante.customerapi.rest.AddressRequest
-import br.com.estudante.customerapi.rest.AddressResponse
-import java.util.*
-import javax.persistence.*
-import kotlin.collections.ArrayList
+import javax.persistence.Column
+import javax.persistence.Entity
+import javax.persistence.GeneratedValue
+import javax.persistence.GenerationType
+import javax.persistence.Id
+import javax.persistence.OneToMany
+import javax.persistence.Table
 
 @Entity
 @Table(name = "address")
-data class AddressEntity (
+data class AddressEntity(
 
     @Id
-    val id: String,
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    var id: Long? = null,
 
-    @Column(name = "road")
-    val road: String,
+    @Column(name = "street")
+    val street: String,
 
     @Column(name = "district")
     val district: String,

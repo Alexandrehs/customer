@@ -8,5 +8,5 @@ class CustomerApiApplication {
 }
 
 fun main(args: Array<String>) {
-	runApplication<CustomerApiApplication>(*args)
+    runApplication<CustomerApiApplication>(*args)
 }

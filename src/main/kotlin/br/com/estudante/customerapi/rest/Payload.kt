@@ -44,18 +44,7 @@ data class CustomerResponse(
     )
 }
 
-data class AddressRequest (
-    val road: String?,
-
-    val district: String?,
-
-    val city: String?,
-
-    val state: String?,
-
-)
-
-data class AddressResponse (
+data class Address (
     val road: String?,
     
     val district: String?,

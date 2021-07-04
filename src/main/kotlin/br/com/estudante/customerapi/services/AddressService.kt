@@ -1,21 +1,36 @@
 package br.com.estudante.customerapi.services
 
-import br.com.estudante.customerapi.enums.ApiExternal
-import br.com.estudante.customerapi.factories.AddressFactory
-import br.com.estudante.customerapi.rest.AddressResponse
+import br.com.estudante.customerapi.entity.AddressEntity
+import br.com.estudante.customerapi.repository.AddressRepository
+import java.util.UUID
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
 @Service
 class AddressService {
-    fun getAddress(postalCode: String): AddressResponse {
-        val addressFactory = AddressFactory()
 
-        return try {
-            val address = addressFactory.makeAddress(ApiExternal.VIACEP)
-            address.findPostalCode(postalCode)
-        } catch (exception : Exception) {
-            val address = addressFactory.makeAddress(ApiExternal.WSAPICEP)
-            address.findPostalCode(postalCode)
+    @Autowired
+    lateinit var addressRepository: AddressRepository
+
+    @Autowired
+    lateinit var addressApiService: AddressApiService
+
+    fun resolveAddress(postalCode: String): AddressEntity {
+        try {
+            val addressFromDatabase = addressRepository.findByPostalCode(postalCode)
+
+            if (addressFromDatabase != null) {
+                return addressFromDatabase
+            }
+
+            val addressExternalApi = addressApiService.findCepApi(postalCode)
+            return addressRepository.save(AddressEntity(
+                street = addressExternalApi.road!!,
+                district = addressExternalApi.district!!,
+                city = addressExternalApi.city!!,
+                state = addressExternalApi.state!!,
+                postalCode = postalCode
+            ))
         } catch (exception: Exception) {
             throw exception
         }

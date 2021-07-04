@@ -11,5 +11,9 @@ class AddressScheduler {
     @Scheduled(cron = "* * 23 * * * *")
     fun updateAddressData() {
 
+//        Esta é uma abordagem de resolver a questão dos
+//        customer que não tem o Id do address.
+//
+//        Eu te passo mais detalhes por áudio
     }
 }

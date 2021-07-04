@@ -3,6 +3,7 @@ package br.com.estudante.customerapi.clients
 import br.com.estudante.customerapi.providers.PostalCodeProvider
 import br.com.estudante.customerapi.rest.Address
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Component
 import org.springframework.web.client.RestTemplate
@@ -14,11 +15,14 @@ class ViaCep : PostalCodeProvider {
     @Autowired
     private lateinit var restTemplate: RestTemplate
 
+    @Value("\${app.client.services.via-cep}")
+    private lateinit var url: String
+
     override fun findPostalCode(postalCode: String): Address {
         try {
 
             val viacepResponse = restTemplate.getForObject(
-                "https://viacep.com.br/ws/{cep}/json",
+                url,
                 ViacepResponse::class.java,
                 postalCode
             )

@@ -3,6 +3,7 @@ package br.com.estudante.customerapi.clients
 import br.com.estudante.customerapi.providers.PostalCodeProvider
 import br.com.estudante.customerapi.rest.Address
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Component
 import org.springframework.web.client.RestTemplate
@@ -14,11 +15,14 @@ class WsApiCep : PostalCodeProvider {
     @Autowired
     private lateinit var restTemplate: RestTemplate
 
+    @Value("\${app.client.services.api-cep}")
+    private lateinit var url: String
+
     override fun findPostalCode(postalCode: String): Address {
         try {
 
             val addressResponse = restTemplate.getForObject(
-                "https://ws.apicep.com/cep/{cep}.json",
+                url,
                 WSAddressResponse::class.java,
                 postalCode
             )
